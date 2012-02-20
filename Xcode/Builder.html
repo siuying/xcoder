@@ -620,8 +620,8 @@ A new instance of Builder
     <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_launch'>launch</span>
   <span class='kw'>end</span>
   
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CONFIG: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_config'>config</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='ivar'>@target</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span>
+  <span class='comment'>#puts &quot;CONFIG: #{config}&quot;
+</span>  <span class='ivar'>@target</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span>
   <span class='ivar'>@sdk</span> <span class='op'>=</span> <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_sdk'>sdk</span>
   <span class='ivar'>@config</span> <span class='op'>=</span> <span class='id identifier rubyid_config'>config</span>
   <span class='ivar'>@build_path</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>/build/</span><span class='tstring_end'>&quot;</span></span>
@@ -871,12 +871,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-145
-146
-147</pre>
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_app_path'>app_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_configuration_build_path'>configuration_build_path</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_product_name'>product_name</span><span class='rbrace'>}</span><span class='tstring_content'>.app</span><span class='tstring_end'>&quot;</span></span>
@@ -902,7 +902,8 @@ Returns the value of attribute sdk
 38
 39
 40
-41</pre>
+41
+42</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 38</span>
@@ -910,6 +911,7 @@ Returns the value of attribute sdk
 <span class='kw'>def</span> <span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_sdk'>sdk</span><span class='op'>=</span><span class='ivar'>@sdk</span><span class='rparen'>)</span>    
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='id identifier rubyid_build_command'>build_command</span><span class='lparen'>(</span><span class='ivar'>@sdk</span><span class='rparen'>)</span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -929,12 +931,6 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-70
-71
-72
-73
-74
-75
 76
 77
 78
@@ -949,15 +945,24 @@ Returns the value of attribute sdk
 87
 88
 89
-90</pre>
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clean'>clean</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xcodebuild</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-project \&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-sdk </span><span class='embexpr_beg'>#{</span><span class='ivar'>@sdk</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@sdk</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-scheme </span><span class='embexpr_beg'>#{</span><span class='ivar'>@scheme</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@scheme</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-target \&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@scheme</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -974,7 +979,8 @@ Returns the value of attribute sdk
 </span>  <span class='comment'># cmd = []
 </span>  <span class='comment'># cmd &lt;&lt; &quot;rm -Rf #{build_path}&quot;
 </span>  <span class='comment'># Xcode::Shell.execute(cmd)
-</span><span class='kw'>end</span></pre>
+</span>  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -993,12 +999,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-137
-138
-139</pre>
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configuration_build_path'>configuration_build_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_build_path'>build_path</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='ivar'>@sdk</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1021,12 +1027,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-159
-160
-161</pre>
+177
+178
+179</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dsym_path'>dsym_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_path'>app_path</span><span class='rbrace'>}</span><span class='tstring_content'>.dSYM</span><span class='tstring_end'>&quot;</span></span>
@@ -1049,12 +1055,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-163
-164
-165</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_product_version_basename'>product_version_basename</span><span class='rbrace'>}</span><span class='tstring_content'>.dSYM.zip</span><span class='tstring_end'>&quot;</span></span>
@@ -1077,12 +1083,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-141
-142
-143</pre>
+159
+160
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 141</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 159</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_entitlements_path'>entitlements_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_build_path'>build_path</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>.build/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>-</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_sdk'>sdk</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>.build/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_product_name'>product_name</span><span class='rbrace'>}</span><span class='tstring_content'>.xcent</span><span class='tstring_end'>&quot;</span></span>
@@ -1155,12 +1161,12 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-155
-156
-157</pre>
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ipa_path'>ipa_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_product_version_basename'>product_version_basename</span><span class='rbrace'>}</span><span class='tstring_content'>.ipa</span><span class='tstring_end'>&quot;</span></span>
@@ -1183,23 +1189,6 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
 120
 121
 122
@@ -1215,10 +1204,28 @@ Returns the value of attribute sdk
 132
 133
 134
-135</pre>
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_package'>package</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't find </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_path'>app_path</span><span class='rbrace'>}</span><span class='tstring_content'>, do you need to call builder.build?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span> <span class='id identifier rubyid_app_path'>app_path</span>
@@ -1226,7 +1233,7 @@ Returns the value of attribute sdk
   <span class='comment'>#package IPA
 </span>  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>      
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>xcrun</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-sdk </span><span class='embexpr_beg'>#{</span><span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_sdk'>sdk</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>iphoneos</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='ivar'>@target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_sdk'>sdk</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-sdk </span><span class='embexpr_beg'>#{</span><span class='ivar'>@sdk</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='ivar'>@sdk</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PackageApplication</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-v \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_app_path'>app_path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-o \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ipa_path'>ipa_path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -1252,6 +1259,7 @@ Returns the value of attribute sdk
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dsym_path'>dsym_path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
 
+  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1271,14 +1279,14 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-149
-150
-151
-152
-153</pre>
+167
+168
+169
+170
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_product_version_basename'>product_version_basename</span>
   <span class='id identifier rubyid_version'>version</span> <span class='op'>=</span> <span class='ivar'>@config</span><span class='period'>.</span><span class='id identifier rubyid_info_plist'>info_plist</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>
@@ -1303,19 +1311,28 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-92
-93
-94
-95
-96
-97
-98
-99
 100
-101</pre>
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sign'>sign</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1326,6 +1343,15 @@ Returns the value of attribute sdk
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--entitlements \&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_entitlements_path'>entitlements_path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ipa_path'>ipa_path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
+ 
+<span class='comment'># CodeSign build/AdHoc-iphoneos/Dial.app
+</span><span class='comment'>#     cd &quot;/Users/ray/Projects/Clients/CBAA/Community Radio&quot;
+</span><span class='comment'>#     setenv CODESIGN_ALLOCATE /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate
+</span><span class='comment'>#     setenv PATH &quot;/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/Users/ray/.rvm/gems/ruby-1.9.2-p290@cbaa/bin:/Users/ray/.rvm/gems/ruby-1.9.2-p290@global/bin:/Users/ray/.rvm/rubies/ruby-1.9.2-p290/bin:/Users/ray/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/git/bin&quot;
+</span><span class='comment'>#     /usr/bin/codesign --force --sign &quot;iPhone Distribution: Community Broadcasting Association of Australia&quot; &quot;--resource-rules=/Users/ray/Projects/Clients/CBAA/Community Radio/build/AdHoc-iphoneos/Dial.app/ResourceRules.plist&quot; --keychain &quot;\&quot;/Users/ray/Projects/Clients/CBAA/Community\\&quot; &quot;Radio/Provisioning/CBAA.keychain\&quot;&quot; --entitlements &quot;/Users/ray/Projects/Clients/CBAA/Community Radio/build/CommunityRadio.build/AdHoc-iphoneos/CommunityRadio.build/Dial.xcent&quot; &quot;/Users/ray/Projects/Clients/CBAA/Community Radio/build/AdHoc-iphoneos/Dial.app&quot;
+</span><span class='comment'># iPhone Distribution: Community Broadcasting Association of Australia: no identity found
+</span><span class='comment'># Command /usr/bin/codesign failed with exit code 1
+</span>  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1367,7 +1393,6 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-43
 44
 45
 46
@@ -1383,10 +1408,15 @@ Returns the value of attribute sdk
 56
 57
 58
-59</pre>
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_test'>test</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='id identifier rubyid_build_command'>build_command</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>iphonesimulator</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -1394,16 +1424,20 @@ Returns the value of attribute sdk
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TEST_HOST=''</span><span class='tstring_end'>&quot;</span></span>
   
   <span class='id identifier rubyid_parser'>parser</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Test</span><span class='op'>::</span><span class='const'>OCUnitReportParser</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
-    <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_line'>line</span>
-    <span class='id identifier rubyid_parser'>parser</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
-  <span class='kw'>end</span>
-  
   <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_parser'>parser</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   
-  <span class='id identifier rubyid_exit'>exit</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_exit_code'>exit_code</span> <span class='kw'>if</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_exit_code'>exit_code</span><span class='op'>!=</span><span class='int'>0</span>
+  <span class='kw'>begin</span>
+    <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_line'>line</span><span class='op'>|</span>
+      <span class='id identifier rubyid_parser'>parser</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_line'>line</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
+    <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_flush'>flush</span>
+    <span class='comment'># Let the failure bubble up unless parser has got an error from the output
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span> <span class='kw'>unless</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_exit'>exit</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_parser'>parser</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span>
   
-  <span class='id identifier rubyid_parser'>parser</span>
+  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1445,25 +1479,27 @@ Returns the value of attribute sdk
       <pre class="lines">
 
 
-61
-62
-63
-64
-65
 66
 67
-68</pre>
+68
+69
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/builder.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_testflight'>testflight</span><span class='lparen'>(</span><span class='id identifier rubyid_api_token'>api_token</span><span class='comma'>,</span> <span class='id identifier rubyid_team_token'>team_token</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't find </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ipa_path'>ipa_path</span><span class='rbrace'>}</span><span class='tstring_content'>, do you need to call builder.build?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span> <span class='id identifier rubyid_ipa_path'>ipa_path</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't fins </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span><span class='rbrace'>}</span><span class='tstring_content'>, do you need to call builder.build?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span> <span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't find </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_ipa_path'>ipa_path</span><span class='rbrace'>}</span><span class='tstring_content'>, do you need to call builder.package?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span> <span class='id identifier rubyid_ipa_path'>ipa_path</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can't fins </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span><span class='rbrace'>}</span><span class='tstring_content'>, do you need to call builder.package?</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span> <span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span>
   
   <span class='id identifier rubyid_testflight'>testflight</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Testflight</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_api_token'>api_token</span><span class='comma'>,</span> <span class='id identifier rubyid_team_token'>team_token</span><span class='rparen'>)</span>
   <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_testflight'>testflight</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='id identifier rubyid_testflight'>testflight</span><span class='period'>.</span><span class='id identifier rubyid_upload'>upload</span><span class='lparen'>(</span><span class='id identifier rubyid_ipa_path'>ipa_path</span><span class='comma'>,</span> <span class='id identifier rubyid_dsym_zip_path'>dsym_zip_path</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1475,7 +1511,7 @@ Returns the value of attribute sdk
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:10 2012 by 
+  Generated on Mon Feb 20 15:15:34 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

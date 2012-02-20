@@ -138,7 +138,7 @@ E21D8AA914E0F817002E56AA /* newtarget */ = {
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#project-instance_method" title="#project (instance method)">- (Object) <strong>project</strong> </a>
+      <a href="#project-instance_method" title="#project (instance method)">- (Project) <strong>project</strong> </a>
     
 
     
@@ -155,7 +155,7 @@ E21D8AA914E0F817002E56AA /* newtarget */ = {
 
   
     <span class="summary_desc"><div class='inline'><p>
-A reference to the project for which these targets reside.
+The reference to the project for which these targets reside.
 </p>
 </div></span>
   
@@ -232,7 +232,7 @@ This is a generic properties hash for an ios target.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#config-instance_method" title="#config (instance method)">- (PBXBuildConfiguration) <strong>config</strong>(name) {|config| ... }</a>
+      <a href="#config-instance_method" title="#config (instance method)">- (BuildConfiguration) <strong>config</strong>(name) {|config| ... }</a>
     
 
     
@@ -256,7 +256,7 @@ Return a specific build configuration.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#configs-instance_method" title="#configs (instance method)">- (PBXBuildConfiguration) <strong>configs</strong> </a>
+      <a href="#configs-instance_method" title="#configs (instance method)">- (Array&lt;BuildConfiguration&gt;) <strong>configs</strong> </a>
     
 
     
@@ -270,7 +270,7 @@ Return a specific build configuration.
 
   
     <span class="summary_desc"><div class='inline'><p>
-The configurations that this target supports.
+The configurations that this target  supports.
 </p>
 </div></span>
   
@@ -397,7 +397,7 @@ Create a product reference file and add it to the product.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#framework_build_phase-instance_method" title="#framework_build_phase (instance method)">- (BuildPhase) <strong>framework_build_phase</strong> </a>
+      <a href="#framework_build_phase-instance_method" title="#framework_build_phase (instance method)">- (BuildPhase) <strong>framework_build_phase</strong>(&amp;block) </a>
     
 
     
@@ -421,7 +421,7 @@ The framework specific build phase of the target.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#resources_build_phase-instance_method" title="#resources_build_phase (instance method)">- (BuildPhase) <strong>resources_build_phase</strong> </a>
+      <a href="#resources_build_phase-instance_method" title="#resources_build_phase (instance method)">- (BuildPhase) <strong>resources_build_phase</strong>(&amp;block) </a>
     
 
     
@@ -445,7 +445,7 @@ The resources specific build phase of the target.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sources_build_phase-instance_method" title="#sources_build_phase (instance method)">- (BuildPhase) <strong>sources_build_phase</strong> </a>
+      <a href="#sources_build_phase-instance_method" title="#sources_build_phase (instance method)">- (BuildPhase) <strong>sources_build_phase</strong>(&amp;block) </a>
     
 
     
@@ -479,14 +479,14 @@ The sources specific build phase of the target.
       <div class="method_details first">
   <p class="signature first" id="project-instance_method">
   
-    - (<tt>Object</tt>) <strong>project</strong> 
+    - (<tt><span class='object_link'><a href="Project.html" title="Xcode::Project (class)">Project</a></span></tt>) <strong>project</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-A reference to the project for which these targets reside.
+The reference to the project for which these targets reside.
 </p>
 
 
@@ -494,6 +494,25 @@ A reference to the project for which these targets reside.
 </div>
 <div class="tags">
   
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Project.html" title="Xcode::Project (class)">Project</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the reference to the project for which these targets reside.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -608,14 +627,14 @@ This is a generic properties hash for an ios target
       <pre class="lines">
 
 
-137
-138
-139
 140
-141</pre>
+141
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_phase'>build_phase</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_found_build_phase'>found_build_phase</span> <span class='op'>=</span> <span class='id identifier rubyid_build_phases'>build_phases</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_phase'>phase</span><span class='op'>|</span> <span class='id identifier rubyid_phase'>phase</span><span class='period'>.</span><span class='id identifier rubyid_isa'>isa</span> <span class='op'>==</span> <span class='id identifier rubyid_type'>type</span> <span class='rbrace'>}</span>
@@ -630,15 +649,23 @@ This is a generic properties hash for an ios target
       <div class="method_details ">
   <p class="signature " id="config-instance_method">
   
-    - (<tt>PBXBuildConfiguration</tt>) <strong>config</strong>(name) {|config| ... }
+    - (<tt>BuildConfiguration</tt>) <strong>config</strong>(name) {|config| ... }
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>
-Return a specific build configuration. When one is not found to match, an
-exception is raised.
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+an exception is raised if no configuration matches the specified name.
+</p>
+</div>
+  </div>
+
+<p>
+Return a specific build configuration.
 </p>
 
 
@@ -686,7 +713,7 @@ of a configuration to return
     <li>
       
       
-        <span class='type'>(<tt>PBXBuildConfiguration</tt>)</span>
+        <span class='type'>(<tt>BuildConfiguration</tt>)</span>
       
       
       
@@ -706,15 +733,15 @@ a specific build configuration that  matches the specified name.
       <pre class="lines">
 
 
-75
-76
-77
 78
 79
-80</pre>
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_config'>config</span> <span class='op'>=</span> <span class='id identifier rubyid_configs'>configs</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_config'>config</span><span class='op'>|</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>==</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
@@ -730,15 +757,15 @@ a specific build configuration that  matches the specified name.
       <div class="method_details ">
   <p class="signature " id="configs-instance_method">
   
-    - (<tt>PBXBuildConfiguration</tt>) <strong>configs</strong> 
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span>&lt;BuildConfiguration&gt;</tt>) <strong>configs</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-The configurations that this target supports. these are generally
-&#8216;Debug&#8217; or &#8216;Release&#8217; but may be custom designed
+The configurations that this target  supports. These are generally
+&#8216;Debug&#8217; or &#8216;Release&#8217; but may be custom  created
 configurations.
 </p>
 
@@ -753,14 +780,14 @@ configurations.
     <li>
       
       
-        <span class='type'>(<tt>PBXBuildConfiguration</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span>&lt;BuildConfiguration&gt;</tt>)</span>
       
       
       
         &mdash;
         <div class='inline'><p>
-the configurations that this target supports. these are generally
-&#8216;Debug&#8217; or &#8216;Release&#8217; but may be custom designed
+the configurations that this target  supports. These are generally
+&#8216;Debug&#8217; or &#8216;Release&#8217; but may be custom  created
 configurations.
 </p>
 </div>
@@ -890,9 +917,6 @@ the BuildPhase that is created
       <pre class="lines">
 
 
-153
-154
-155
 156
 157
 158
@@ -904,10 +928,13 @@ the BuildPhase that is created
 164
 165
 166
-167</pre>
+167
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_build_phase'>create_build_phase</span><span class='lparen'>(</span><span class='id identifier rubyid_phase_name'>phase_name</span><span class='rparen'>)</span>
   
@@ -994,9 +1021,6 @@ the phases created.
       <pre class="lines">
 
 
-177
-178
-179
 180
 181
 182
@@ -1004,10 +1028,13 @@ the phases created.
 184
 185
 186
-187</pre>
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_build_phases'>create_build_phases</span> <span class='op'>*</span><span class='id identifier rubyid_base_phase_names'>base_phase_names</span>
   
@@ -1104,18 +1131,18 @@ that is created
       <pre class="lines">
 
 
-94
-95
-96
 97
 98
 99
 100
 101
-102</pre>
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_configuration'>create_configuration</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='comment'># To create a configuration, we need to create or retrieve the configuration list
@@ -1144,9 +1171,6 @@ that is created
       <pre class="lines">
 
 
-104
-105
-106
 107
 108
 109
@@ -1154,10 +1178,13 @@ that is created
 111
 112
 113
-114</pre>
+114
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 104</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_configurations'>create_configurations</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_configuration_names'>configuration_names</span><span class='rparen'>)</span>
   
@@ -1241,14 +1268,14 @@ the product created
       <pre class="lines">
 
 
-196
-197
-198
 199
-200</pre>
+200
+201
+202
+203</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 196</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_product_reference'>create_product_reference</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_product'>product</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_products_group'>products_group</span><span class='period'>.</span><span class='id identifier rubyid_create_product_reference'>create_product_reference</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1263,7 +1290,7 @@ the product created
       <div class="method_details ">
   <p class="signature " id="framework_build_phase-instance_method">
   
-    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>framework_build_phase</strong> 
+    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>framework_build_phase</strong>(&amp;block) 
   
 
   
@@ -1304,15 +1331,15 @@ the framework specific build phase of the target.
       <pre class="lines">
 
 
-119
-120
-121</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 122</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_framework_build_phase'>framework_build_phase</span>
-  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXFrameworksBuildPhase</span><span class='tstring_end'>'</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_framework_build_phase'>framework_build_phase</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXFrameworksBuildPhase</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1322,7 +1349,7 @@ the framework specific build phase of the target.
       <div class="method_details ">
   <p class="signature " id="resources_build_phase-instance_method">
   
-    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>resources_build_phase</strong> 
+    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>resources_build_phase</strong>(&amp;block) 
   
 
   
@@ -1363,15 +1390,15 @@ the resources specific build phase of the target.
       <pre class="lines">
 
 
-133
-134
-135</pre>
+136
+137
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 136</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_resources_build_phase'>resources_build_phase</span>
-  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXResourcesBuildPhase</span><span class='tstring_end'>'</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_resources_build_phase'>resources_build_phase</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXResourcesBuildPhase</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1381,7 +1408,7 @@ the resources specific build phase of the target.
       <div class="method_details ">
   <p class="signature " id="sources_build_phase-instance_method">
   
-    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>sources_build_phase</strong> 
+    - (<tt><span class='object_link'><a href="BuildPhase.html" title="Xcode::BuildPhase (module)">BuildPhase</a></span></tt>) <strong>sources_build_phase</strong>(&amp;block) 
   
 
   
@@ -1422,15 +1449,15 @@ the sources specific build phase of the target.
       <pre class="lines">
 
 
-126
-127
-128</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/target.rb', line 129</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_sources_build_phase'>sources_build_phase</span>
-  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXSourcesBuildPhase</span><span class='tstring_end'>'</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_sources_build_phase'>sources_build_phase</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_build_phase'>build_phase</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PBXSourcesBuildPhase</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1442,7 +1469,7 @@ the sources specific build phase of the target.
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:10 2012 by 
+  Generated on Mon Feb 20 15:15:34 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

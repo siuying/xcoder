@@ -181,7 +181,7 @@ Returns the value of attribute path.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#create-class_method" title="create (class method)">+ (Xcode::Keychain) <strong>create</strong>(name, password) </a>
+      <a href="#create-class_method" title="create (class method)">+ (Xcode::Keychain) <strong>create</strong>(path, password) {|kc| ... }</a>
     
 
     
@@ -205,7 +205,7 @@ Create a new keychain with the given name and password.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#login_keychain-class_method" title="login_keychain (class method)">+ (Xcode::Keychain) <strong>login_keychain</strong> </a>
+      <a href="#login-class_method" title="login (class method)">+ (Xcode::Keychain) <strong>login</strong> {|kc| ... }</a>
     
 
     
@@ -229,7 +229,7 @@ Opens the default login.keychain for current user.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#temp_keychain-class_method" title="temp_keychain (class method)">+ (Object) <strong>temp_keychain</strong>(name, &amp;block) </a>
+      <a href="#temp-class_method" title="temp (class method)">+ (Object) <strong>temp</strong>(&amp;block) </a>
     
 
     
@@ -336,7 +336,7 @@ password.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Keychain) <strong>initialize</strong>(name) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Keychain) <strong>initialize</strong>(path) {|_self| ... }</a>
     
 
     
@@ -392,7 +392,7 @@ Unlock the keychain using the provided password.
     <div class="method_details first">
   <p class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Keychain</a></span></tt>) <strong>initialize</strong>(name) 
+    - (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Keychain</a></span></tt>) <strong>initialize</strong>(path) {|_self| ... }
   
 
   
@@ -429,6 +429,40 @@ name of the keychain
   
 </ul>
 
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>_self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Yield Parameters:</h3>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>_self</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Xcode::Keychain</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the object that the method was called on
+</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -439,14 +473,18 @@ name of the keychain
 13
 14
 15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 13</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
-  <span class='ivar'>@path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>~/Library/Keychains/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='ivar'>@path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span> <span class='id identifier rubyid_path'>path</span>
+  <span class='ivar'>@name</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span> <span class='id identifier rubyid_path'>path</span>
+  
+  <span class='kw'>yield</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -554,7 +592,7 @@ Returns the value of attribute path
       <div class="method_details first">
   <p class="signature first" id="create-class_method">
   
-    + (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Xcode::Keychain</a></span></tt>) <strong>create</strong>(name, password) 
+    + (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Xcode::Keychain</a></span></tt>) <strong>create</strong>(path, password) {|kc| ... }
   
 
   
@@ -607,6 +645,19 @@ password for the new keychain
   
 </ul>
 
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>kc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -633,8 +684,6 @@ an object representing the new keychain
       <pre class="lines">
 
 
-74
-75
 76
 77
 78
@@ -642,20 +691,26 @@ an object representing the new keychain
 80
 81
 82
-83</pre>
+83
+84
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 76</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>security</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>create-keychain</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-p </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
   
-  <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kc'>kc</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+  <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_kc'>kc</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='id identifier rubyid_kc'>kc</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -663,9 +718,9 @@ an object representing the new keychain
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="login_keychain-class_method">
+  <p class="signature " id="login-class_method">
   
-    + (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Xcode::Keychain</a></span></tt>) <strong>login_keychain</strong> 
+    + (<tt><span class='object_link'><a href="" title="Xcode::Keychain (class)">Xcode::Keychain</a></span></tt>) <strong>login</strong> {|kc| ... }
   
 
   
@@ -680,6 +735,19 @@ Opens the default login.keychain for current user
 </div>
 <div class="tags">
   
+<h3>Yields:</h3>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>kc</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 <h3>Returns:</h3>
 <ul class="return">
   
@@ -706,15 +774,19 @@ the current user&#8217;s login keychain
       <pre class="lines">
 
 
-118
-119
-120</pre>
+122
+123
+124
+125
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 122</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_login_keychain'>login_keychain</span>
-  <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>login.keychain</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_login'>login</span>
+  <span class='id identifier rubyid_kc'>kc</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>~/Library/Keychains/login.keychain</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_kc'>kc</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+  <span class='id identifier rubyid_kc'>kc</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -722,9 +794,9 @@ the current user&#8217;s login keychain
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="temp_keychain-class_method">
+  <p class="signature " id="temp-class_method">
   
-    + (<tt>Object</tt>) <strong>temp_keychain</strong>(name, &amp;block) 
+    + (<tt>Object</tt>) <strong>temp</strong>(&amp;block) 
   
 
   
@@ -769,21 +841,21 @@ name of the temporary keychain to create
       <pre class="lines">
 
 
-103
-104
-105
-106
 107
 108
 109
 110
-111</pre>
+111
+112
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 107</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_temp_keychain'>temp_keychain</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_kc'>kc</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='const'>TEMP_PASSWORD</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_temp'>temp</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_kc'>kc</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/tmp/xcoder</span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>TEMP_PASSWORD</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_kc'>kc</span><span class='period'>.</span><span class='id identifier rubyid_unlock'>unlock</span><span class='lparen'>(</span><span class='const'>TEMP_PASSWORD</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_kc'>kc</span><span class='rparen'>)</span>
@@ -830,20 +902,20 @@ FIXME: dangerous
       <pre class="lines">
 
 
-90
-91
-92
-93
 94
-95</pre>
+95
+96
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete'>delete</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>security</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>delete-keychain </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>delete-keychain \&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -895,8 +967,6 @@ a list of identity names
       <pre class="lines">
 
 
-39
-40
 41
 42
 43
@@ -907,10 +977,12 @@ a list of identity names
 48
 49
 50
-51</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_identities'>identities</span>
   <span class='id identifier rubyid_names'>names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -918,7 +990,7 @@ a list of identity names
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>security</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>find-certificate</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-a</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s+&quot;labl&quot;&lt;blob&gt;=&quot;([^&quot;]+)&quot;</span><span class='regexp_end'>/</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span>
     <span class='id identifier rubyid_names'>names</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_m'>m</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -994,24 +1066,24 @@ password to open the certificate file
       <pre class="lines">
 
 
-24
-25
 26
 27
 28
 29
 30
 31
-32</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_import'>import</span><span class='lparen'>(</span><span class='id identifier rubyid_cert'>cert</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>security</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>import '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_cert'>cert</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-k '</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-k \&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-P </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-T /usr/bin/codesign</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
@@ -1067,24 +1139,24 @@ password to open the keychain
       <pre class="lines">
 
 
-58
-59
 60
 61
 62
 63
 64
-65</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/keychain.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unlock'>unlock</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>security</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unlock-keychain</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-p </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_cmd'>cmd</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@path</span><span class='rbrace'>}</span><span class='tstring_content'>\&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_cmd'>cmd</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1097,7 +1169,7 @@ password to open the keychain
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:10 2012 by 
+  Generated on Mon Feb 20 15:15:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

@@ -56,7 +56,11 @@
     
     <div id="content"><div id='filecontents'><h1>XCoder</h1>
 
-<p>A ruby wrapper around various xcode tools and project, schemes and workspace configuration files</p>
+<p>Taking the pain out of scripting and automating xcode builds.</p>
+
+<p>Xcoder is a ruby wrapper around various Xcode tools as well as providing project and workspace parsing and partial write support.  Xcoder also supports manipulation of keychains, packaging and uploading artifacts to <a href="http://testflightapp.com">Testflight</a> and provisioning profile management.</p>
+
+<p>Full documentation can be found here: <a href="http://rayh.github.com/xcoder/">http://rayh.github.com/xcoder/</a></p>
 
 <h2>Example Usage</h2>
 
@@ -180,9 +184,9 @@
 </span><span class='kw'>end</span>
 </code></pre>
 
-<h3>Testflight</h3>
+<h3><a href="http://testflightapp.com">Testflight</a></h3>
 
-<p>The common output of this build/package process is to upload to testflight.  This is pretty simple with xcoder:</p>
+<p>The common output of this build/package process is to upload to Testflight.  This is pretty simple with Xcoder:</p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_testflight'>testflight</span><span class='lparen'>(</span><span class='const'>API_TOKEN</span><span class='comma'>,</span> <span class='const'>TEAM_TOKEN</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_tf'>tf</span><span class='op'>|</span>
   <span class='id identifier rubyid_tf'>tf</span><span class='period'>.</span><span class='id identifier rubyid_notes'>notes</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>some release notes</span><span class='tstring_end'>&quot;</span></span>
@@ -204,6 +208,65 @@
 
 <p>This will invoke the test target, capture the output and write the junit reports to the test-reports directory.  Currently only junit is supported.</p>
 
+<h2>Manipulating a Project</h2>
+
+<p>Xcoder can also create targets, configurations, and add files. Xcoder could be used to programmatically manipulate or install external sources into a project.</p>
+
+<p>It is important to note that Xcode gets cranky when the Xcode project file is changed by external sources. This usually causes the project and schemes to reset or maybe even cause Xcode to crash. It is often best to close the project before manipulating it with Xcoder.</p>
+
+<h3>Add the source and header file to the project</h3>
+
+<pre class="code ruby"><code># Copy the physical source files into the project path `Vendor/Reachability`
+FileUtils.cp_r &quot;examples/Reachability/Vendor&quot;, &quot;spec/TestProject&quot;
+
+source_files = [ { 'name' =&gt; 'Reachability.m', 'path' =&gt; 'Vendor/Reachability/Reachability.m' },
+                 { 'name' =&gt; 'Reachability.h', 'path' =&gt; 'Vendor/Reachability/Reachability.h' } ]
+
+
+ # Create and traverse to the group Reachability within the Vendor folder
+ project.group('Vendor/Reachability') do
+   # Create files for each source file defined above
+   source_files.each |source| create_file source }
+ end
+</code></pre>
+
+<p>Within the project file the groups in the path are created or found and then file references are added for the two specified source files. Xcoder only updates the logical project file, it does not copy physical files, that is done by the FileUtils.</p>
+
+<h3>Adding source file to the sources build phase</h3>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_source_file'>source_file</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Vendor/Reachability/Reachability.m</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+
+<span class='comment'># Select the main target of the project and add the source file to the build phase.
+</span>
+<span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>TestProject</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sources_build_phase'>sources_build_phase</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_add_build_file'>add_build_file</span> <span class='id identifier rubyid_source_file'>source_file</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<p>Adding source files does not automatically include it in any of the built targets. That is done after you add the source file to the <code>sources_build_phase</code>. First we find the source file reference, select our target and then add it as a build file.</p>
+
+<h3>Adding a System Framework</h3>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_cfnetwork_framework'>cfnetwork_framework</span> <span class='op'>=</span> <span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_frameworks_group'>frameworks_group</span><span class='period'>.</span><span class='id identifier rubyid_create_system_framework'>create_system_framework</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>CFNetwork</span><span class='tstring_end'>'</span></span>
+
+<span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_target'>target</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>TestProject</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_framework_build_phase'>framework_build_phase</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_add_build_file'>add_build_file</span> <span class='id identifier rubyid_cfnetwork_framework'>cfnetwork_framework</span>
+<span class='kw'>end</span> 
+</code></pre>
+
+<p>The <strong>CFNetwork.framework</strong> is added to the <code>Frameworks</code> group of the project and then added to the frameworks build phase.</p>
+
+<h3>Saving your changes!</h3>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_save!'>save!</span>
+</code></pre>
+
+<p>The saved file output is ugly compared to what you may normally see when you view a Xcode project file. Luckily, Xcode will fix the format of the file if you make any small changes to the project that require it to save.</p>
+
+<h3>More Examples</h3>
+
+<p>Within the <code>specs/integration</code> folder there are more examples.</p>
+
 <h2>Tests</h2>
 
 <p>There are some basic RSpec tests in the project which I suspect /wont/ work on machines without my identity installed.  </p>
@@ -216,7 +279,7 @@
 </div></div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:09 2012 by 
+  Generated on Mon Feb 20 15:15:34 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

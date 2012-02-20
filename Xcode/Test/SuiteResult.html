@@ -223,7 +223,28 @@ Returns the value of attribute tests.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#finish-instance_method" title="#finish (instance method)">- (Object) <strong>finish</strong>(time) </a>
+      <a href="#finish-instance_method" title="#finish (instance method)">- (Object) <strong>finish</strong>(time = Time.now) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#finished%3F-instance_method" title="#finished? (instance method)">- (Boolean) <strong>finished?</strong> </a>
     
 
     
@@ -270,7 +291,7 @@ A new instance of SuiteResult.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#total_error_tests-instance_method" title="#total_error_tests (instance method)">- (Object) <strong>total_error_tests</strong> </a>
+      <a href="#total_errors-instance_method" title="#total_errors (instance method)">- (Object) <strong>total_errors</strong> </a>
     
 
     
@@ -567,7 +588,7 @@ Returns the value of attribute tests
       <div class="method_details first">
   <p class="signature first" id="finish-instance_method">
   
-    - (<tt>Object</tt>) <strong>finish</strong>(time) 
+    - (<tt>Object</tt>) <strong>finish</strong>(time = Time.now) 
   
 
   
@@ -585,7 +606,7 @@ Returns the value of attribute tests
     <td>
       <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 12</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_finish'>finish</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_finish'>finish</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='op'>=</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Time is nil</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_time'>time</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='ivar'>@end_time</span> <span class='op'>=</span> <span class='id identifier rubyid_time'>time</span>
 <span class='kw'>end</span></pre>
@@ -595,13 +616,35 @@ Returns the value of attribute tests
 </div>
     
       <div class="method_details ">
-  <p class="signature " id="total_error_tests-instance_method">
+  <p class="signature " id="finished?-instance_method">
   
-    - (<tt>Object</tt>) <strong>total_error_tests</strong> 
+    - (<tt>Boolean</tt>) <strong>finished?</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -614,8 +657,44 @@ Returns the value of attribute tests
     <td>
       <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 17</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_total_error_tests'>total_error_tests</span>
-  <span class='ivar'>@tests</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_error?'>error?</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_finished?'>finished?</span>
+  <span class='op'>!</span><span class='ivar'>@end_time</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="total_errors-instance_method">
+  
+    - (<tt>Object</tt>) <strong>total_errors</strong> 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23
+24
+25
+26
+27</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_total_errors'>total_errors</span>
+  <span class='id identifier rubyid_errors'>errors</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@tests</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> 
+    <span class='id identifier rubyid_errors'>errors</span> <span class='op'>=</span> <span class='id identifier rubyid_errors'>errors</span> <span class='op'>+</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span> <span class='kw'>if</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_errors'>errors</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -635,12 +714,12 @@ Returns the value of attribute tests
       <pre class="lines">
 
 
-25
-26
-27</pre>
+33
+34
+35</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_total_failed_tests'>total_failed_tests</span>
   <span class='ivar'>@tests</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_failed?'>failed?</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
@@ -663,12 +742,12 @@ Returns the value of attribute tests
       <pre class="lines">
 
 
-21
-22
-23</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/test/suite_result.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_total_passed_tests'>total_passed_tests</span>
   <span class='ivar'>@tests</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_passed?'>passed?</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_count'>count</span>
@@ -683,7 +762,7 @@ Returns the value of attribute tests
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:11 2012 by 
+  Generated on Mon Feb 20 15:15:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

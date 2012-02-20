@@ -72,7 +72,9 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/xcode/configuration.rb</dd>
+    <dd class="r1 last">lib/xcode/configuration.rb<span class="defines">,<br />
+  lib/xcode/configurations/array_property.rb,<br /> lib/xcode/configurations/string_property.rb,<br /> lib/xcode/configurations/boolean_property.rb,<br /> lib/xcode/configurations/space_delimited_string_property.rb,<br /> lib/xcode/configurations/targeted_device_family_property.rb</span>
+</dd>
   
 </dl>
 <div class="clear"></div>
@@ -125,12 +127,400 @@ E21D8ABB14E0F817002E56AA /* Debug */ = {
     
   </ul>
 
-</div>
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+   
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Configuration/ArrayProperty.html" title="Xcode::Configuration::ArrayProperty (module)">ArrayProperty</a></span>, <span class='object_link'><a href="Configuration/BooleanProperty.html" title="Xcode::Configuration::BooleanProperty (module)">BooleanProperty</a></span>, <span class='object_link'><a href="Configuration/SpaceDelimitedString.html" title="Xcode::Configuration::SpaceDelimitedString (module)">SpaceDelimitedString</a></span>, <span class='object_link'><a href="Configuration/StringProperty.html" title="Xcode::Configuration::StringProperty (module)">StringProperty</a></span>, <span class='object_link'><a href="Configuration/TargetedDeviceFamily.html" title="Xcode::Configuration::TargetedDeviceFamily (module)">TargetedDeviceFamily</a></span>
+    
+   
+    
+  
+</p>
+
 
 
 
   <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
   <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#always_search_user_paths-instance_method" title="#always_search_user_paths (instance method)">- (Object) <strong>always_search_user_paths</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;ALWAYS_SEARCH_USER_PATHS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#architectures-instance_method" title="#architectures (instance method)">- (Object) <strong>architectures</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;ARCHS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#c_language_standard-instance_method" title="#c_language_standard (instance method)">- (Object) <strong>c_language_standard</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_C_LANGUAGE_STANDARD&#8221; Usually set to gnu99.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#code_sign_identity-instance_method" title="#code_sign_identity (instance method)">- (Object) <strong>code_sign_identity</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;CODE_SIGN_IDENTITY[sdk=>iphoneos*]&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#copy_phase_strip-instance_method" title="#copy_phase_strip (instance method)">- (Object) <strong>copy_phase_strip</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;COPY_PHASE_STRIP&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gcc_version-instance_method" title="#gcc_version (instance method)">- (Object) <strong>gcc_version</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_VERSION&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#info_plist_location-instance_method" title="#info_plist_location (instance method)">- (Object) <strong>info_plist_location</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;INFOPLIST_FILE&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#iphoneos_deployment_target-instance_method" title="#iphoneos_deployment_target (instance method)">- (Object) <strong>iphoneos_deployment_target</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;IPHONEOS_DEPLOYMENT_TARGET&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#other_c_flags-instance_method" title="#other_c_flags (instance method)">- (Object) <strong>other_c_flags</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;OTHER_CFLAGS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#precompile_prefix_headers-instance_method" title="#precompile_prefix_headers (instance method)">- (Object) <strong>precompile_prefix_headers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_PRECOMPILE_PREFIX_HEADER&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#prefix_header-instance_method" title="#prefix_header (instance method)">- (Object) <strong>prefix_header</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_PREFIX_HEADER&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#product_name-instance_method" title="#product_name (instance method)">- (Object) <strong>product_name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;PRODUCT_NAME&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#sdkroot-instance_method" title="#sdkroot (instance method)">- (Object) <strong>sdkroot</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;SDKROOT&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#supported_platforms-instance_method" title="#supported_platforms (instance method)">- (Object) <strong>supported_platforms</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;SUPPORTED_PLATFORMS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
     
       <li class="public ">
   <span class="summary_signature">
@@ -152,7 +542,171 @@ E21D8ABB14E0F817002E56AA /* Debug */ = {
 
   
     <span class="summary_desc"><div class='inline'><p>
-The configuration is defined within a target.
+As configurations are defined within a target, this will return the target
+that owns this configuration through a build_configuration list.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#targeted_device_family-instance_method" title="#targeted_device_family (instance method)">- (Object) <strong>targeted_device_family</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;TARGETED_DEVICE_FAMILY&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#user_header_search_paths-instance_method" title="#user_header_search_paths (instance method)">- (Object) <strong>user_header_search_paths</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;USER_HEADER_SEARCH_PATHS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#validate_product-instance_method" title="#validate_product (instance method)">- (Object) <strong>validate_product</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;VALIDATE_PRODUCT&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#warn_about_missing_prototypes-instance_method" title="#warn_about_missing_prototypes (instance method)">- (Object) <strong>warn_about_missing_prototypes</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_WARN_ABOUT_MISSING_PROTOTYPES&#8221; Defaults to
+YES.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#warn_about_return_type-instance_method" title="#warn_about_return_type (instance method)">- (Object) <strong>warn_about_return_type</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;GCC_WARN_ABOUT_MISSING_PROTOTYPES&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wrapper_extension-instance_method" title="#wrapper_extension (instance method)">- (Object) <strong>wrapper_extension</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;WRAPPER_EXTENSION&#8221;.
 </p>
 </div></span>
   
@@ -175,7 +729,7 @@ The configuration is defined within a target.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#default_properties-class_method" title="default_properties (class method)">+ (Object) <strong>default_properties</strong>(name) </a>
+      <a href="#default_properties-class_method" title="default_properties (class method)">+ (Hash) <strong>default_properties</strong>(name) </a>
     
 
     
@@ -188,7 +742,35 @@ The configuration is defined within a target.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+A large number of these default build settings properties for a
+configuration  are as defined for Xcode 4.2.
+</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#property-class_method" title="property (class method)">+ (Object) <strong>property</strong>(property_name, setting_name, type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+This method will define getters/setters mapped to the build configuration.
+</p>
+</div></span>
   
 </li>
 
@@ -278,54 +860,6 @@ edit the configuration.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#info_plist_location-instance_method" title="#info_plist_location (instance method)">- (Object) <strong>info_plist_location</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-The location for the InfoPlist file for the configuration.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#product_name-instance_method" title="#product_name (instance method)">- (Object) <strong>product_name</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>
-The name of the product that this configuration will generate.
-</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#set-instance_method" title="#set (instance method)">- (Object) <strong>set</strong>(name, value) </a>
     
 
@@ -355,19 +889,19 @@ Set the configuration value for the given name.
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="target=-instance_method"></span>
-      <span id="target-instance_method"></span>
+      <span id="always_search_user_paths=-instance_method"></span>
+      <span id="always_search_user_paths-instance_method"></span>
       <div class="method_details first">
-  <p class="signature first" id="target-instance_method">
+  <p class="signature first" id="always_search_user_paths-instance_method">
   
-    - (<tt>Object</tt>) <strong>target</strong> 
+    - (<tt>Object</tt>) <strong>always_search_user_paths</strong> 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
     <p>
-The configuration is defined within a target.
+Build Setting - &#8220;ALWAYS_SEARCH_USER_PATHS&#8220;
 </p>
 
 
@@ -379,7 +913,7 @@ The configuration is defined within a target.
   <h3>See Also:</h3>
   <ul class="see">
     
-      <li>PBXNativeTarget</li>
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW110" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW110">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW110</a></li>
     
   </ul>
 
@@ -389,16 +923,927 @@ The configuration is defined within a target.
       <pre class="lines">
 
 
-60
-61
-62</pre>
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 162</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:always_search_user_paths</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ALWAYS_SEARCH_USER_PATHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="architectures=-instance_method"></span>
+      <span id="architectures-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="architectures-instance_method">
+  
+    - (<tt>Object</tt>) <strong>architectures</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;ARCHS&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW62" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW62">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW62</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 172</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:architectures</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ARCHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="c_language_standard=-instance_method"></span>
+      <span id="c_language_standard-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="c_language_standard-instance_method">
+  
+    - (<tt>Object</tt>) <strong>c_language_standard</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_C_LANGUAGE_STANDARD&#8221; Usually set to gnu99
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 157</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:c_language_standard</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_C_LANGUAGE_STANDARD</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="code_sign_identity=-instance_method"></span>
+      <span id="code_sign_identity-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="code_sign_identity-instance_method">
+  
+    - (<tt>Object</tt>) <strong>code_sign_identity</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;CODE_SIGN_IDENTITY[sdk=>iphoneos*]&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-DontLinkElementID_10" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-DontLinkElementID_10">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-DontLinkElementID_10</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 187</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:code_sign_identity</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CODE_SIGN_IDENTITY[sdk=&gt;iphoneos*]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="copy_phase_strip=-instance_method"></span>
+      <span id="copy_phase_strip-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="copy_phase_strip-instance_method">
+  
+    - (<tt>Object</tt>) <strong>copy_phase_strip</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;COPY_PHASE_STRIP&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW144" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW144">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW144</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 203</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:copy_phase_strip</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>COPY_PHASE_STRIP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="gcc_version=-instance_method"></span>
+      <span id="gcc_version-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="gcc_version-instance_method">
+  
+    - (<tt>Object</tt>) <strong>gcc_version</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_VERSION&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW15" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW15">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW15</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 167</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:gcc_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_VERSION</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="info_plist_location=-instance_method"></span>
+      <span id="info_plist_location-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="info_plist_location-instance_method">
+  
+    - (<tt>Object</tt>) <strong>info_plist_location</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;INFOPLIST_FILE&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW68" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW68">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW68</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 132</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:info_plist_location</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INFOPLIST_FILE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="iphoneos_deployment_target=-instance_method"></span>
+      <span id="iphoneos_deployment_target-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="iphoneos_deployment_target-instance_method">
+  
+    - (<tt>Object</tt>) <strong>iphoneos_deployment_target</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong> 
+    <div class='inline'><p>
+this should be a numeric scale from 2.0 through 5.0; at the levels
+specified in the documentation
+</p>
+</div>
+  </div>
+
+<p>
+Build Setting - &#8220;IPHONEOS_DEPLOYMENT_TARGET&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW156" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW156">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW156</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 198</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:iphoneos_deployment_target</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>IPHONEOS_DEPLOYMENT_TARGET</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="other_c_flags=-instance_method"></span>
+      <span id="other_c_flags-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="other_c_flags-instance_method">
+  
+    - (<tt>Object</tt>) <strong>other_c_flags</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;OTHER_CFLAGS&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW17" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW17">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW17</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 152</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:other_c_flags</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OTHER_CFLAGS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>ArrayProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="precompile_prefix_headers=-instance_method"></span>
+      <span id="precompile_prefix_headers-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="precompile_prefix_headers-instance_method">
+  
+    - (<tt>Object</tt>) <strong>precompile_prefix_headers</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_PRECOMPILE_PREFIX_HEADER&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW11" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW11">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW11</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 122</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:precompile_prefix_headers</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_PRECOMPILE_PREFIX_HEADER</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="prefix_header=-instance_method"></span>
+      <span id="prefix_header-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="prefix_header-instance_method">
+  
+    - (<tt>Object</tt>) <strong>prefix_header</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_PREFIX_HEADER&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW12" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW12">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW12</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 127</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:prefix_header</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_PREFIX_HEADER</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="product_name=-instance_method"></span>
+      <span id="product_name-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="product_name-instance_method">
+  
+    - (<tt>Object</tt>) <strong>product_name</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;PRODUCT_NAME&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+113</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 113</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:product_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PRODUCT_NAME</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="sdkroot=-instance_method"></span>
+      <span id="sdkroot-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="sdkroot-instance_method">
+  
+    - (<tt>Object</tt>) <strong>sdkroot</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;SDKROOT&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW89" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW89">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW89</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 147</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:sdkroot</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SDKROOT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="supported_platforms=-instance_method"></span>
+      <span id="supported_platforms-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="supported_platforms-instance_method">
+  
+    - (<tt>Object</tt>) <strong>supported_platforms</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;SUPPORTED_PLATFORMS&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 117</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:supported_platforms</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SUPPORTED_PLATFORMS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="target=-instance_method"></span>
+      <span id="target-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="target-instance_method">
+  
+    - (<tt>Object</tt>) <strong>target</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+As configurations are defined within a target, this will return the target
+that owns this configuration through a build_configuration list.
+</p>
+<p>
+However, a build configuration list can also be defined at the project
+level which means target may likely be nil when viewing the configuration
+of the project.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="Target.html" title="Xcode::Target (module)">Target</a></span></li>
+    
+      <li><span class='object_link'><a href="ConfigurationList.html" title="Xcode::ConfigurationList (module)">Xcode::ConfigurationList</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+109
+110
+111</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_target'>target</span>
   <span class='ivar'>@target</span>
 <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="targeted_device_family=-instance_method"></span>
+      <span id="targeted_device_family-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="targeted_device_family-instance_method">
+  
+    - (<tt>Object</tt>) <strong>targeted_device_family</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;TARGETED_DEVICE_FAMILY&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW165" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW165">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW165</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 142</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:targeted_device_family</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TARGETED_DEVICE_FAMILY</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>TargetedDeviceFamily</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="user_header_search_paths=-instance_method"></span>
+      <span id="user_header_search_paths-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="user_header_search_paths-instance_method">
+  
+    - (<tt>Object</tt>) <strong>user_header_search_paths</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;USER_HEADER_SEARCH_PATHS&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW21" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW21">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW21</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 230</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:user_header_search_paths</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USER_HEADER_SEARCH_PATHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="validate_product=-instance_method"></span>
+      <span id="validate_product-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="validate_product-instance_method">
+  
+    - (<tt>Object</tt>) <strong>validate_product</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;VALIDATE_PRODUCT&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW167" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW167">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW167</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 192</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:validate_product</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>VALIDATE_PRODUCT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="warn_about_missing_prototypes=-instance_method"></span>
+      <span id="warn_about_missing_prototypes-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="warn_about_missing_prototypes-instance_method">
+  
+    - (<tt>Object</tt>) <strong>warn_about_missing_prototypes</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_WARN_ABOUT_MISSING_PROTOTYPES&#8221; Defaults to
+YES
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 177</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:warn_about_missing_prototypes</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_WARN_ABOUT_MISSING_PROTOTYPES</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="warn_about_return_type=-instance_method"></span>
+      <span id="warn_about_return_type-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="warn_about_return_type-instance_method">
+  
+    - (<tt>Object</tt>) <strong>warn_about_return_type</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;GCC_WARN_ABOUT_MISSING_PROTOTYPES&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW123" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW123">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW123</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 182</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:warn_about_return_type</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_WARN_ABOUT_RETURN_TYPE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="wrapper_extension=-instance_method"></span>
+      <span id="wrapper_extension-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="wrapper_extension-instance_method">
+  
+    - (<tt>Object</tt>) <strong>wrapper_extension</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;WRAPPER_EXTENSION&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW3" target="_parent" title="https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW3">https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW3</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 137</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:wrapper_extension</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WRAPPER_EXTENSION</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
   </tr>
 </table>
@@ -414,31 +1859,80 @@ The configuration is defined within a target.
       <div class="method_details first">
   <p class="signature first" id="default_properties-class_method">
   
-    + (<tt>Object</tt>) <strong>default_properties</strong>(name) 
+    + (<tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt>) <strong>default_properties</strong>(name) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note todo">
+    <strong>TODO:</strong> 
+    <div class='inline'><p>
+remove the name requirement and replace all these configuration settings
+with the smaller subset. As a lot of these are usually maintained by the
+project
+</p>
+</div>
+  </div>
+
+<p>
+A large number of these default build settings properties for a
+configuration  are as defined for Xcode 4.2.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+is used to create the correct prefix header file and  info.plist file.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+properties for a default build configuration
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
 47
 48
 49
@@ -446,10 +1940,25 @@ The configuration is defined within a target.
 51
 52
 53
-54</pre>
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_default_properties'>default_properties</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>isa</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>XCBuildConfiguration</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
@@ -473,6 +1982,130 @@ The configuration is defined within a target.
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PRODUCT_NAME</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>$(TARGET_NAME)</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WRAPPER_EXTENSION</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>app</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span>
       <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>name</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="property-class_method">
+  
+    + (<tt>Object</tt>) <strong>property</strong>(property_name, setting_name, type) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+This method will define getters/setters mapped to the build configuration.
+</p>
+<p>
+This allows for dynamic values to be saved and loaded by allowing a parsing
+process to take place on the loaded value and when saving back to the
+value.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>property_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the name of the property that is being defined
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>String</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span> setting_name the configuration value string</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+setting_name the configuration value string
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>Types</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+is the class that is used to load and save the value correctly.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_property'>property</span><span class='lparen'>(</span><span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='comma'>,</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  
+  <span class='comment'># Define a getter method
+</span>
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_property_name'>property_name</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_substitute'>substitute</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Define a setter method
+</span>  
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_unsubstitute'>unsubstitute</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -536,16 +2169,14 @@ this is a builder for the configuration.
       <pre class="lines">
 
 
-127
-128
-129
-130</pre>
+258
+259
+260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_builder'>builder</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Making a Builder with </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_methods'>methods</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Builder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -618,12 +2249,12 @@ the value stored for the specified configuration
       <pre class="lines">
 
 
-106
-107
-108</pre>
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -696,148 +2327,21 @@ Editing the configuration
       <pre class="lines">
 
 
-85
-86
-87
-88
-89
-90
-91</pre>
+220
+221
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_info_plist'>info_plist</span>
-  <span class='comment'># puts @json.inspect
-</span>  <span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>InfoPlist</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_info_plist_location'>info_plist_location</span><span class='rparen'>)</span>  
+  <span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>InfoPlist</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_info_plist_location'>info_plist_location</span><span class='rparen'>)</span>  
   <span class='kw'>yield</span> <span class='id identifier rubyid_info'>info</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='id identifier rubyid_info'>info</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span>
   <span class='id identifier rubyid_info'>info</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="info_plist_location-instance_method">
-  
-    - (<tt>Object</tt>) <strong>info_plist_location</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-The location for the InfoPlist file for the configuration.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'></span>
-      
-      
-      
-        
-        <div class='inline'><p>
-the location for the InfoPlist file for the configuration.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-  <h3>See Also:</h3>
-  <ul class="see">
-    
-      <li><span class='object_link'><a href="InfoPlist.html" title="Xcode::InfoPlist (class)">InfoPlist</a></span></li>
-    
-  </ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-66
-67
-68</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 66</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_info_plist_location'>info_plist_location</span>
-  <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>INFOPLIST_FILE</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <p class="signature " id="product_name-instance_method">
-  
-    - (<tt>Object</tt>) <strong>product_name</strong> 
-  
-
-  
-</p><div class="docstring">
-  <div class="discussion">
-    <p>
-The name of the product that this configuration will generate.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<h3>Returns:</h3>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'></span>
-      
-      
-      
-        
-        <div class='inline'><p>
-the name of the product that this configuration will generate.
-</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-96
-97
-98</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 96</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_product_name'>product_name</span>
-  <span class='id identifier rubyid_substitute'>substitute</span><span class='lparen'>(</span><span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>PRODUCT_NAME</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -907,12 +2411,12 @@ the value to store for the specific setting
       <pre class="lines">
 
 
-116
-117
-118</pre>
+248
+249
+250</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 248</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -927,7 +2431,7 @@ the value to store for the specific setting
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:11 2012 by 
+  Generated on Mon Feb 20 15:15:35 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

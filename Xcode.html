@@ -73,7 +73,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/xcoder.rb<span class="defines">,<br />
-  lib/xcode/shell.rb,<br /> lib/xcode/group.rb,<br /> lib/xcode/target.rb,<br /> lib/xcode/scheme.rb,<br /> lib/xcode/version.rb,<br /> lib/xcode/builder.rb,<br /> lib/xcode/project.rb,<br /> lib/xcode/keychain.rb,<br /> lib/xcode/resource.rb,<br /> lib/xcode/registry.rb,<br /> lib/xcode/buildfile.rb,<br /> lib/xcode/workspace.rb,<br /> lib/xcode/info_plist.rb,<br /> lib/xcode/build_file.rb,<br /> lib/xcode/testflight.rb,<br /> lib/xcode/build_phase.rb,<br /> lib/xcode/variant_group.rb,<br /> lib/xcode/configuration.rb,<br /> lib/xcode/file_reference.rb,<br /> lib/xcode/test/test_result.rb,<br /> lib/xcode/test/suite_result.rb,<br /> lib/xcode/configuration_list.rb,<br /> lib/xcode/provisioning_profile.rb,<br /> lib/xcode/test/ocunit_report_parser.rb,<br /> lib/xcode/parsers/plutil_project_parser.rb,<br /> lib/xcode/test/formatters/junit_formatter.rb</span>
+  lib/xcode/shell.rb,<br /> lib/xcode/group.rb,<br /> lib/xcode/target.rb,<br /> lib/xcode/scheme.rb,<br /> lib/xcode/version.rb,<br /> lib/xcode/builder.rb,<br /> lib/xcode/project.rb,<br /> lib/xcode/registry.rb,<br /> lib/xcode/resource.rb,<br /> lib/xcode/keychain.rb,<br /> lib/xcode/buildfile.rb,<br /> lib/xcode/workspace.rb,<br /> lib/xcode/testflight.rb,<br /> lib/xcode/build_file.rb,<br /> lib/xcode/info_plist.rb,<br /> lib/xcode/build_phase.rb,<br /> lib/xcode/variant_group.rb,<br /> lib/xcode/configuration.rb,<br /> lib/xcode/file_reference.rb,<br /> lib/xcode/test/test_result.rb,<br /> lib/xcode/test/suite_result.rb,<br /> lib/xcode/configuration_list.rb,<br /> lib/xcode/provisioning_profile.rb,<br /> lib/xcode/test/ocunit_report_parser.rb,<br /> lib/xcode/parsers/plutil_project_parser.rb,<br /> lib/xcode/configurations/array_property.rb,<br /> lib/xcode/configurations/string_property.rb,<br /> lib/xcode/test/formatters/junit_formatter.rb,<br /> lib/xcode/configurations/boolean_property.rb,<br /> lib/xcode/test/formatters/stdout_formatter.rb,<br /> lib/xcode/configurations/space_delimited_string_property.rb,<br /> lib/xcode/configurations/targeted_device_family_property.rb</span>
 </dd>
   
 </dl>
@@ -99,7 +99,7 @@
         <dt id="VERSION-constant" class="">VERSION =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.2</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.6</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
         <dt id="projects-classvariable" class="">@@projects =
           
@@ -136,7 +136,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#available_sdks-class_method" title="available_sdks (class method)">+ (Object) <strong>available_sdks</strong> </a>
+      <a href="#available_sdks-class_method" title="available_sdks (class method)">+ (Array&lt;String&gt;) <strong>available_sdks</strong> </a>
     
 
     
@@ -149,7 +149,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Available SDKs available on this particular system.
+</p>
+</div></span>
   
 </li>
 
@@ -157,7 +160,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_projects-class_method" title="find_projects (class method)">+ (Object) <strong>find_projects</strong>(dir = '.') </a>
+      <a href="#find_projects-class_method" title="find_projects (class method)">+ (Array&lt;Project&gt;) <strong>find_projects</strong>(dir = '.') </a>
     
 
     
@@ -170,7 +173,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+The projects found at the specified directory.
+</p>
+</div></span>
   
 </li>
 
@@ -178,7 +184,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#is_sdk_available%3F-class_method" title="is_sdk_available? (class method)">+ (Boolean) <strong>is_sdk_available?</strong>(sdk) </a>
+      <a href="#is_sdk_available%3F-class_method" title="is_sdk_available? (class method)">+ (TrueClass, FalseClass) <strong>is_sdk_available?</strong>(sdk) </a>
     
 
     
@@ -191,7 +197,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+True if the sdk is available; false otherwise.
+</p>
+</div></span>
   
 </li>
 
@@ -199,7 +208,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#project-class_method" title="project (class method)">+ (Object) <strong>project</strong>(name) </a>
+      <a href="#project-class_method" title="project (class method)">+ (Project) <strong>project</strong>(name) </a>
     
 
     
@@ -212,7 +221,11 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Find the project with the specified name within the current working
+directory.
+</p>
+</div></span>
   
 </li>
 
@@ -220,7 +233,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#projects-class_method" title="projects (class method)">+ (Object) <strong>projects</strong> </a>
+      <a href="#projects-class_method" title="projects (class method)">+ (Array&lt;Project&gt;) <strong>projects</strong> </a>
     
 
     
@@ -233,7 +246,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Find all the projects within the current working directory.
+</p>
+</div></span>
   
 </li>
 
@@ -241,7 +257,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#workspace-class_method" title="workspace (class method)">+ (Object) <strong>workspace</strong>(name) </a>
+      <a href="#workspace-class_method" title="workspace (class method)">+ (Project) <strong>workspace</strong>(name) </a>
     
 
     
@@ -254,7 +270,11 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Find the workspace with the specified name within the current working
+directory.
+</p>
+</div></span>
   
 </li>
 
@@ -262,7 +282,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#workspaces-class_method" title="workspaces (class method)">+ (Object) <strong>workspaces</strong> </a>
+      <a href="#workspaces-class_method" title="workspaces (class method)">+ (Array&lt;Workspaces&gt;) <strong>workspaces</strong> </a>
     
 
     
@@ -275,7 +295,10 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+Find all the workspaces within the current working directory.
+</p>
+</div></span>
   
 </li>
 
@@ -292,23 +315,54 @@
       <div class="method_details first">
   <p class="signature first" id="available_sdks-class_method">
   
-    + (<tt>Object</tt>) <strong>available_sdks</strong> 
+    + (<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="String.html" title="String (class)">String</a></span>&gt;</tt>) <strong>available_sdks</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Available SDKs available on this particular system.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="String.html" title="String (class)">String</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the available SDKs on the current system.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-58
-59
-60
-61</pre>
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_available_sdks'>available_sdks</span>
   <span class='id identifier rubyid_parse_sdks'>parse_sdks</span> <span class='kw'>if</span> <span class='cvar'>@@sdks</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -322,22 +376,77 @@
       <div class="method_details ">
   <p class="signature " id="find_projects-class_method">
   
-    + (<tt>Object</tt>) <strong>find_projects</strong>(dir = '.') 
+    + (<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span>&gt;</tt>) <strong>find_projects</strong>(dir = '.') 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+The projects found at the specified directory.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>'.'</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the path to search for projects; defaults to using the current working
+directory.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the projects found at the specified directory.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-49
-50
-51</pre>
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_projects'>find_projects</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parse_projects'>parse_projects</span><span class='lparen'>(</span><span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span>
@@ -350,27 +459,57 @@
       <div class="method_details ">
   <p class="signature " id="is_sdk_available?-class_method">
   
-    + (<tt>Boolean</tt>) <strong>is_sdk_available?</strong>(sdk) 
+    + (<tt><span class='object_link'><a href="TrueClass.html" title="TrueClass (class)">TrueClass</a></span></tt>, <tt><span class='object_link'><a href="FalseClass.html" title="FalseClass (class)">FalseClass</a></span></tt>) <strong>is_sdk_available?</strong>(sdk) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    
+    <p>
+True if the sdk is available; false otherwise.
+</p>
+
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>sdk</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+name of the sdk that is being asked to see if available.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <h3>Returns:</h3>
 <ul class="return">
   
     <li>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="TrueClass.html" title="TrueClass (class)">TrueClass</a></span></tt>, <tt><span class='object_link'><a href="FalseClass.html" title="FalseClass (class)">FalseClass</a></span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>
+true if the sdk is available; false otherwise.
+</p>
+</div>
       
     </li>
   
@@ -382,13 +521,13 @@
       <pre class="lines">
 
 
-53
-54
-55
-56</pre>
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_sdk_available?'>is_sdk_available?</span><span class='lparen'>(</span><span class='id identifier rubyid_sdk'>sdk</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_parse_sdks'>parse_sdks</span> <span class='kw'>if</span> <span class='cvar'>@@sdks</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -402,29 +541,92 @@
       <div class="method_details ">
   <p class="signature " id="project-class_method">
   
-    + (<tt>Object</tt>) <strong>project</strong>(name) 
+    + (<tt><span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span></tt>) <strong>project</strong>(name) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+this method will raise an error when it is unable to find the project
+specified.
+</p>
+</div>
+  </div>
+
+<p>
+Find the project with the specified name within the current working
+directory.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of the project (e.g. NAME.xcodeproj) that is attempting to be found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the project found; an error is raise if a project is unable to be found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36</pre>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -444,23 +646,54 @@
       <div class="method_details ">
   <p class="signature " id="projects-class_method">
   
-    + (<tt>Object</tt>) <strong>projects</strong> 
+    + (<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span>&gt;</tt>) <strong>projects</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Find all the projects within the current working directory.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an array of the all the Projects found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-17
-18
-19
-20</pre>
+23
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_projects'>projects</span>
   <span class='cvar'>@@projects</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_projects'>parse_projects</span> <span class='kw'>if</span> <span class='cvar'>@@projects</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -474,29 +707,93 @@
       <div class="method_details ">
   <p class="signature " id="workspace-class_method">
   
-    + (<tt>Object</tt>) <strong>workspace</strong>(name) 
+    + (<tt><span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span></tt>) <strong>workspace</strong>(name) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+this method will raise an error when it is unable to find the workspace
+specified.
+</p>
+</div>
+  </div>
+
+<p>
+Find the workspace with the specified name within the current working
+directory.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of the workspace (e.g. NAME.xcworkspace) that is attempting to be found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Xcode/Project.html" title="Xcode::Project (class)">Project</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the workspace found; an error is raise if a workspace is unable to be
+found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47</pre>
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_workspace'>workspace</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -516,23 +813,54 @@
       <div class="method_details ">
   <p class="signature " id="workspaces-class_method">
   
-    + (<tt>Object</tt>) <strong>workspaces</strong> 
+    + (<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Workspaces&gt;</tt>) <strong>workspaces</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Find all the workspaces within the current working directory.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span>&lt;Workspaces&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+an array of all the Workspaces found.
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-22
-23
-24
-25</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/xcoder.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_workspaces'>workspaces</span>
   <span class='cvar'>@@workspaces</span> <span class='op'>=</span> <span class='id identifier rubyid_parse_workspaces'>parse_workspaces</span> <span class='kw'>if</span> <span class='cvar'>@@workspaces</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -548,7 +876,7 @@
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 13 23:50:10 2012 by 
+  Generated on Mon Feb 20 15:15:34 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>
