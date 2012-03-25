@@ -102,6 +102,60 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#appstore-instance_method" title="#appstore (instance method)">- (Object) <strong>appstore</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute appstore.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#devices-instance_method" title="#devices (instance method)">- (Object) <strong>devices</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title readonly">readonly</span>
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Returns the value of attribute devices.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#identifiers-instance_method" title="#identifiers (instance method)">- (Object) <strong>identifiers</strong> </a>
     
 
@@ -274,6 +328,27 @@ Returns the value of attribute uuid.
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#appstore%3F-instance_method" title="#appstore? (instance method)">- (Boolean) <strong>appstore?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#initialize-instance_method" title="#initialize (instance method)">- (ProvisioningProfile) <strong>initialize</strong>(path) </a>
     
 
@@ -415,7 +490,21 @@ A new instance of ProvisioningProfile
 25
 26
 27
-28</pre>
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 4</span>
@@ -426,11 +515,25 @@ A new instance of ProvisioningProfile
   
   <span class='ivar'>@path</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span>
   <span class='ivar'>@identifiers</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@devices</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@appstore</span> <span class='op'>=</span> <span class='kw'>true</span>
   
   <span class='comment'># TODO: im sure this could be done in a nicer way.  maybe read out the XML-like stuff and use the plist -&gt; json converter
 </span>  <span class='id identifier rubyid_uuid'>uuid</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_f'>f</span><span class='op'>|</span>
     <span class='id identifier rubyid_input'>input</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_input'>input</span><span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>ProvisionedDevices</span><span class='regexp_end'>/</span></span>
+      <span class='ivar'>@appstore</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='kw'>end</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_input'>input</span><span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;key&gt;ProvisionedDevices&lt;\/key&gt;.*?&lt;array&gt;(.*?)&lt;\/array&gt;</span><span class='regexp_end'>/im</span></span>
+      <span class='backref'>$1</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;string&gt;</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_id'>id</span><span class='op'>|</span>
+        <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='ivar'>@devices</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_id'>id</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;\/string&gt;</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    
     <span class='id identifier rubyid_input'>input</span><span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>&lt;key&gt;UUID&lt;\/key&gt;.*?&lt;string&gt;(.*?)&lt;\/string&gt;</span><span class='regexp_end'>/im</span></span>
     <span class='ivar'>@uuid</span> <span class='op'>=</span> <span class='backref'>$1</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
             
@@ -457,9 +560,95 @@ A new instance of ProvisioningProfile
     
       
       <span id=""></span>
-      <span id="identifiers-instance_method"></span>
+      <span id="appstore-instance_method"></span>
       <div class="method_details first">
-  <p class="signature first" id="identifiers-instance_method">
+  <p class="signature first" id="appstore-instance_method">
+  
+    - (<tt>Object</tt>) <strong>appstore</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute appstore
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appstore'>appstore</span>
+  <span class='ivar'>@appstore</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="devices-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="devices-instance_method">
+  
+    - (<tt>Object</tt>) <strong>devices</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Returns the value of attribute devices
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3
+4
+5</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 3</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_devices'>devices</span>
+  <span class='ivar'>@devices</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <span id="identifiers-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="identifiers-instance_method">
   
     - (<tt>Object</tt>) <strong>identifiers</strong>  <span class="extras">(readonly)</span>
   
@@ -647,14 +836,14 @@ Returns the value of attribute uuid
       <pre class="lines">
 
 
-46
-47
-48
-49
-50</pre>
+64
+65
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_installed_profiles'>installed_profiles</span>
   <span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profiles_path'>profiles_path</span><span class='rbrace'>}</span><span class='tstring_content'>/*.mobileprovision</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_file'>file</span><span class='op'>|</span>
@@ -679,12 +868,12 @@ Returns the value of attribute uuid
       <pre class="lines">
 
 
-30
-31
-32</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_profiles_path'>profiles_path</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>~/Library/MobileDevice/Provisioning\\ Profiles/</span><span class='tstring_end'>&quot;</span></span>  
@@ -701,7 +890,57 @@ Returns the value of attribute uuid
     
     
       <div class="method_details first">
-  <p class="signature first" id="install-instance_method">
+  <p class="signature first" id="appstore?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>appstore?</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_appstore?'>appstore?</span>
+  <span class='ivar'>@appstore</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="install-instance_method">
   
     - (<tt>Object</tt>) <strong>install</strong> 
   
@@ -713,12 +952,12 @@ Returns the value of attribute uuid
       <pre class="lines">
 
 
-38
-39
-40</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install'>install</span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cp </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='rbrace'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_install_path'>install_path</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>   
@@ -741,12 +980,12 @@ Returns the value of attribute uuid
       <pre class="lines">
 
 
-34
-35
-36</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install_path'>install_path</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>ProvisioningProfile</span><span class='period'>.</span><span class='id identifier rubyid_profiles_path'>profiles_path</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_uuid'>uuid</span><span class='rbrace'>}</span><span class='tstring_content'>.mobileprovision</span><span class='tstring_end'>&quot;</span></span>
@@ -769,12 +1008,12 @@ Returns the value of attribute uuid
       <pre class="lines">
 
 
-42
-43
-44</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/provisioning_profile.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_uninstall'>uninstall</span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Shell</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rm -f </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_install_path'>install_path</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -789,7 +1028,7 @@ Returns the value of attribute uuid
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 20 15:15:35 2012 by 
+  Generated on Sun Mar 25 21:59:43 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

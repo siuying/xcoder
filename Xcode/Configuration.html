@@ -73,7 +73,7 @@
   
     <dt class="r1 last">Defined in:</dt>
     <dd class="r1 last">lib/xcode/configuration.rb<span class="defines">,<br />
-  lib/xcode/configurations/array_property.rb,<br /> lib/xcode/configurations/string_property.rb,<br /> lib/xcode/configurations/boolean_property.rb,<br /> lib/xcode/configurations/space_delimited_string_property.rb,<br /> lib/xcode/configurations/targeted_device_family_property.rb</span>
+  lib/xcode/configurations/array_property.rb,<br /> lib/xcode/configurations/string_property.rb,<br /> lib/xcode/configurations/boolean_property.rb,<br /> lib/xcode/configurations/key_value_array_property.rb,<br /> lib/xcode/configurations/targeted_device_family_property.rb,<br /> lib/xcode/configurations/space_delimited_string_property.rb</span>
 </dd>
   
 </dl>
@@ -131,7 +131,7 @@ E21D8ABB14E0F817002E56AA /* Debug */ = {
 <p class="children">
    
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Configuration/ArrayProperty.html" title="Xcode::Configuration::ArrayProperty (module)">ArrayProperty</a></span>, <span class='object_link'><a href="Configuration/BooleanProperty.html" title="Xcode::Configuration::BooleanProperty (module)">BooleanProperty</a></span>, <span class='object_link'><a href="Configuration/SpaceDelimitedString.html" title="Xcode::Configuration::SpaceDelimitedString (module)">SpaceDelimitedString</a></span>, <span class='object_link'><a href="Configuration/StringProperty.html" title="Xcode::Configuration::StringProperty (module)">StringProperty</a></span>, <span class='object_link'><a href="Configuration/TargetedDeviceFamily.html" title="Xcode::Configuration::TargetedDeviceFamily (module)">TargetedDeviceFamily</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Configuration/ArrayProperty.html" title="Xcode::Configuration::ArrayProperty (module)">ArrayProperty</a></span>, <span class='object_link'><a href="Configuration/BooleanProperty.html" title="Xcode::Configuration::BooleanProperty (module)">BooleanProperty</a></span>, <span class='object_link'><a href="Configuration/KeyValueArrayProperty.html" title="Xcode::Configuration::KeyValueArrayProperty (module)">KeyValueArrayProperty</a></span>, <span class='object_link'><a href="Configuration/SpaceDelimitedString.html" title="Xcode::Configuration::SpaceDelimitedString (module)">SpaceDelimitedString</a></span>, <span class='object_link'><a href="Configuration/StringProperty.html" title="Xcode::Configuration::StringProperty (module)">StringProperty</a></span>, <span class='object_link'><a href="Configuration/TargetedDeviceFamily.html" title="Xcode::Configuration::TargetedDeviceFamily (module)">TargetedDeviceFamily</a></span>
     
    
     
@@ -381,6 +381,33 @@ Build Setting - &#8220;IPHONEOS_DEPLOYMENT_TARGET&#8221;.
   
     <span class="summary_desc"><div class='inline'><p>
 Build Setting - &#8220;OTHER_CFLAGS&#8221;.
+</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#other_linker_flags-instance_method" title="#other_linker_flags (instance method)">- (Object) <strong>other_linker_flags</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Build Setting - &#8220;OTHER_LDFLAGS&#8221;.
 </p>
 </div></span>
   
@@ -775,6 +802,27 @@ This method will define getters/setters mapped to the build configuration.
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setting_name_to_property-class_method" title="setting_name_to_property (class method)">+ (Object) <strong>setting_name_to_property</strong>(name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
     <h2>
@@ -783,6 +831,30 @@ This method will define getters/setters mapped to the build configuration.
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#append-instance_method" title="#append (instance method)">- (Object) <strong>append</strong>(name, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>
+Append a value to the the configuration value for the given name.
+</p>
+</div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -923,10 +995,10 @@ Build Setting - &#8220;ALWAYS_SEARCH_USER_PATHS&#8220;
       <pre class="lines">
 
 
-162</pre>
+206</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 206</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:always_search_user_paths</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ALWAYS_SEARCH_USER_PATHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -969,10 +1041,10 @@ Build Setting - &#8220;ARCHS&#8220;
       <pre class="lines">
 
 
-172</pre>
+216</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 216</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:architectures</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ARCHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
     </td>
@@ -1008,10 +1080,10 @@ Build Setting - &#8220;GCC_C_LANGUAGE_STANDARD&#8221; Usually set to gnu99
       <pre class="lines">
 
 
-157</pre>
+201</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 201</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:c_language_standard</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_C_LANGUAGE_STANDARD</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1054,10 +1126,10 @@ Build Setting - &#8220;CODE_SIGN_IDENTITY[sdk=>iphoneos*]&#8220;
       <pre class="lines">
 
 
-187</pre>
+231</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 231</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:code_sign_identity</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>CODE_SIGN_IDENTITY[sdk=&gt;iphoneos*]</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1100,10 +1172,10 @@ Build Setting - &#8220;COPY_PHASE_STRIP&#8220;
       <pre class="lines">
 
 
-203</pre>
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 203</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 247</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:copy_phase_strip</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>COPY_PHASE_STRIP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -1146,10 +1218,10 @@ Build Setting - &#8220;GCC_VERSION&#8220;
       <pre class="lines">
 
 
-167</pre>
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 211</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:gcc_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_VERSION</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1192,10 +1264,10 @@ Build Setting - &#8220;INFOPLIST_FILE&#8220;
       <pre class="lines">
 
 
-132</pre>
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 176</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:info_plist_location</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>INFOPLIST_FILE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1248,10 +1320,10 @@ Build Setting - &#8220;IPHONEOS_DEPLOYMENT_TARGET&#8220;
       <pre class="lines">
 
 
-198</pre>
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 242</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:iphoneos_deployment_target</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>IPHONEOS_DEPLOYMENT_TARGET</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1294,12 +1366,58 @@ Build Setting - &#8220;OTHER_CFLAGS&#8220;
       <pre class="lines">
 
 
-152</pre>
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 196</span>
 
-<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:other_c_flags</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OTHER_CFLAGS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>ArrayProperty</span></pre>
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:other_c_flags</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OTHER_CFLAGS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>KeyValueArrayProperty</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="other_linker_flags=-instance_method"></span>
+      <span id="other_linker_flags-instance_method"></span>
+      <div class="method_details ">
+  <p class="signature " id="other_linker_flags-instance_method">
+  
+    - (<tt>Object</tt>) <strong>other_linker_flags</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Build Setting - &#8220;OTHER_LDFLAGS&#8220;
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li><a href="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW76" target="_parent" title="https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW76">https://developer.apple.com/library/mac/#documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW76</a></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+252</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 252</span>
+
+<span class='id identifier rubyid_property'>property</span> <span class='symbol'>:other_linker_flags</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OTHER_LDFLAGS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
     </td>
   </tr>
 </table>
@@ -1340,10 +1458,10 @@ Build Setting - &#8220;GCC_PRECOMPILE_PREFIX_HEADER&#8220;
       <pre class="lines">
 
 
-122</pre>
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 166</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:precompile_prefix_headers</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_PRECOMPILE_PREFIX_HEADER</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -1386,10 +1504,10 @@ Build Setting - &#8220;GCC_PREFIX_HEADER&#8220;
       <pre class="lines">
 
 
-127</pre>
+171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 171</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:prefix_header</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_PREFIX_HEADER</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1425,10 +1543,10 @@ Build Setting - &#8220;PRODUCT_NAME&#8220;
       <pre class="lines">
 
 
-113</pre>
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 157</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:product_name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PRODUCT_NAME</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1471,10 +1589,10 @@ Build Setting - &#8220;SDKROOT&#8220;
       <pre class="lines">
 
 
-147</pre>
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 191</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:sdkroot</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SDKROOT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1510,10 +1628,10 @@ Build Setting - &#8220;SUPPORTED_PLATFORMS&#8220;
       <pre class="lines">
 
 
-117</pre>
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 161</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:supported_platforms</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SUPPORTED_PLATFORMS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
     </td>
@@ -1564,12 +1682,12 @@ of the project.
       <pre class="lines">
 
 
-109
-110
-111</pre>
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_target'>target</span>
   <span class='ivar'>@target</span>
@@ -1614,10 +1732,10 @@ Build Setting - &#8220;TARGETED_DEVICE_FAMILY&#8220;
       <pre class="lines">
 
 
-142</pre>
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 186</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:targeted_device_family</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>TARGETED_DEVICE_FAMILY</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>TargetedDeviceFamily</span></pre>
     </td>
@@ -1660,10 +1778,10 @@ Build Setting - &#8220;USER_HEADER_SEARCH_PATHS&#8220;
       <pre class="lines">
 
 
-230</pre>
+279</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 230</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 279</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:user_header_search_paths</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>USER_HEADER_SEARCH_PATHS</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>SpaceDelimitedString</span></pre>
     </td>
@@ -1706,10 +1824,10 @@ Build Setting - &#8220;VALIDATE_PRODUCT&#8220;
       <pre class="lines">
 
 
-192</pre>
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 236</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:validate_product</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>VALIDATE_PRODUCT</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -1746,10 +1864,10 @@ YES
       <pre class="lines">
 
 
-177</pre>
+221</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 221</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:warn_about_missing_prototypes</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_WARN_ABOUT_MISSING_PROTOTYPES</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -1792,10 +1910,10 @@ Build Setting - &#8220;GCC_WARN_ABOUT_MISSING_PROTOTYPES&#8220;
       <pre class="lines">
 
 
-182</pre>
+226</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 182</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 226</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:warn_about_return_type</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>GCC_WARN_ABOUT_RETURN_TYPE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>BooleanProperty</span></pre>
     </td>
@@ -1838,10 +1956,10 @@ Build Setting - &#8220;WRAPPER_EXTENSION&#8220;
       <pre class="lines">
 
 
-137</pre>
+181</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 181</span>
 
 <span class='id identifier rubyid_property'>property</span> <span class='symbol'>:wrapper_extension</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>WRAPPER_EXTENSION</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>StringProperty</span></pre>
     </td>
@@ -1933,7 +2051,6 @@ properties for a default build configuration
       <pre class="lines">
 
 
-47
 48
 49
 50
@@ -1955,10 +2072,11 @@ properties for a default build configuration
 66
 67
 68
-69</pre>
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_default_properties'>default_properties</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>isa</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>XCBuildConfiguration</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
@@ -2073,7 +2191,6 @@ is the class that is used to load and save the value correctly.
       <pre class="lines">
 
 
-82
 83
 84
 85
@@ -2087,17 +2204,68 @@ is the class that is used to load and save the value correctly.
 93
 94
 95
-96</pre>
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_property'>property</span><span class='lparen'>(</span><span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='comma'>,</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   
   <span class='comment'># Define a getter method
 </span>
   <span class='id identifier rubyid_define_method'>define_method</span> <span class='id identifier rubyid_property_name'>property_name</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    
+    <span class='comment'># When the build setting is missing from the existing configuration, look
+</span>    <span class='comment'># for the configuration of the target's project (only if we are currently
+</span>    <span class='comment'># at the Target level).
+</span>    
+    <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_build_settings'>build_settings</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Target</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_project_config'>project_config</span> <span class='op'>=</span> <span class='id identifier rubyid_target'>target</span><span class='period'>.</span><span class='id identifier rubyid_project'>project</span><span class='period'>.</span><span class='id identifier rubyid_global_config'>global_config</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_project_config'>project_config</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_substitute'>substitute</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    
   <span class='kw'>end</span>
 
   <span class='comment'># Define a setter method
@@ -2105,7 +2273,63 @@ is the class that is used to load and save the value correctly.
   <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
     <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_unsubstitute'>unsubstitute</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+
+  <span class='comment'># Define an append method
+</span>  
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>append_to_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_unsubstitute'>unsubstitute</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
   
+  <span class='comment'># Define a environment name method (to return the settings name)
+</span>  
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>env_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_setting_name'>setting_name</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># Define a raw getter
+</span>  
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>raw_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  
+  <span class='comment'># Define a raw setter
+</span>  
+  <span class='id identifier rubyid_define_method'>define_method</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>raw_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>end</span>
+  
+  
+  <span class='ivar'>@setting_name_to_property</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='ivar'>@setting_name_to_property</span>
+  <span class='ivar'>@setting_name_to_property</span><span class='lbracket'>[</span><span class='id identifier rubyid_setting_name'>setting_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_property_name'>property_name</span>
+  
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="setting_name_to_property-class_method">
+  
+    + (<tt>Object</tt>) <strong>setting_name_to_property</strong>(name) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='ivar'>@setting_name_to_property</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2119,7 +2343,147 @@ is the class that is used to load and save the value correctly.
     
     
       <div class="method_details first">
-  <p class="signature first" id="builder-instance_method">
+  <p class="signature first" id="append-instance_method">
+  
+    - (<tt>Object</tt>) <strong>append</strong>(name, value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+Append a value to the the configuration value for the given name
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+of the the configuration setting
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>, <tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span></tt>, <tt><span class='object_link'><a href="../Hash.html" title="Hash (class)">Hash</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the value to store for the specific setting
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 319</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  
+  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>append_to_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>append_to_</span><span class='embexpr_beg'>#{</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+
+    <span class='comment'># @note this will likely raise some errors if trying to append a booleans
+</span>    <span class='comment'>#   to fixnums, strings to booleans, symbols + arrays, etc. but that likely 
+</span>    <span class='comment'>#   means a new property should be defined so that the appending logic
+</span>    <span class='comment'>#   wil behave correctly.
+</span>  
+    <span class='kw'>if</span> <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
+      
+      <span class='comment'># Ensure that we are appending an array to the array; Array() does not
+</span>      <span class='comment'># work in this case in the event we were to pass in a Hash.
+</span>      <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>:</span> <span class='lbracket'>[</span> <span class='id identifier rubyid_value'>value</span> <span class='rbracket'>]</span>
+      <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+      
+    <span class='kw'>else</span>
+      
+      <span class='comment'># Ensure we handle the cases where a nil value is present that we append
+</span>      <span class='comment'># correctly to the value. We also need to try and leave intact boolean
+</span>      <span class='comment'># values which may be stored
+</span>      
+      <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span>
+      <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+      
+      <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>end</span>
+   
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="builder-instance_method">
   
     - (<tt><span class='object_link'><a href="Builder.html" title="Xcode::Builder (class)">Builder</a></span></tt>) <strong>builder</strong> 
   
@@ -2169,12 +2533,12 @@ this is a builder for the configuration.
       <pre class="lines">
 
 
-258
-259
-260</pre>
+360
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 360</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_builder'>builder</span>
   <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Builder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -2249,15 +2613,27 @@ the value stored for the specified configuration
       <pre class="lines">
 
 
-238
-239
-240</pre>
+287
+288
+289
+290
+291
+292
+293
+294
+295</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span> <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2327,15 +2703,15 @@ Editing the configuration
       <pre class="lines">
 
 
-220
-221
-222
-223
-224
-225</pre>
+269
+270
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 220</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 269</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_info_plist'>info_plist</span>
   <span class='id identifier rubyid_info'>info</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>InfoPlist</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_info_plist_location'>info_plist_location</span><span class='rparen'>)</span>  
@@ -2411,15 +2787,27 @@ the value to store for the specific setting
       <pre class="lines">
 
 
-248
-249
-250</pre>
+303
+304
+305
+306
+307
+308
+309
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configuration.rb', line 303</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_setting_name_to_property'>setting_name_to_property</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_build_settings'>build_settings</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2431,7 +2819,7 @@ the value to store for the specific setting
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 20 15:15:35 2012 by 
+  Generated on Sun Mar 25 21:59:43 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

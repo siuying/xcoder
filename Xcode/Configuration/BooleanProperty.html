@@ -135,6 +135,27 @@ setting and getting a property
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#append-instance_method" title="#append (instance method)">- (Object) <strong>append</strong>(original, value) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#open-instance_method" title="#open (instance method)">- (TrueClass, FalseClass) <strong>open</strong>(value) </a>
     
 
@@ -190,7 +211,93 @@ YES or NO.
     
     
       <div class="method_details first">
-  <p class="signature first" id="open-instance_method">
+  <p class="signature first" id="append-instance_method">
+  
+    - (<tt>Object</tt>) <strong>append</strong>(original, value) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong> 
+    <div class='inline'><p>
+Appending boolean properties has no real good default operation. What
+happens in this case is that whatever you decide to append will
+automatically override the previously existing settings.
+</p>
+</div>
+  </div>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>original</span>
+      
+      
+        <span class='type'>(<tt>Types</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+the original value to be appended
+</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>Types</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>
+Description
+</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/boolean_property.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_original'>original</span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="open-instance_method">
   
     - (<tt><span class='object_link'><a href="../../TrueClass.html" title="TrueClass (class)">TrueClass</a></span></tt>, <tt><span class='object_link'><a href="../../FalseClass.html" title="FalseClass (class)">FalseClass</a></span></tt>) <strong>open</strong>(value) 
   
@@ -354,7 +461,7 @@ YES or NO
 </div>
     
     <div id="footer">
-  Generated on Mon Feb 20 15:15:36 2012 by 
+  Generated on Sun Mar 25 21:59:43 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

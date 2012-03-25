@@ -62,6 +62,10 @@
 
 <p>Full documentation can be found here: <a href="http://rayh.github.com/xcoder/">http://rayh.github.com/xcoder/</a></p>
 
+<h2>Requirements</h2>
+
+<p>Xcoder assumes you are using XCode 4.3 on Lion and ruby 1.9.  You may have some degree of success with lesser versions, but they are not intentionally supported.</p>
+
 <h2>Example Usage</h2>
 
 <p>You will need to install the gem:</p>
@@ -105,11 +109,16 @@
 
 <h4>Creating a temporary keychain</h4>
 
-<pre class="code ruby"><code><span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_temp_keychain'>temp_keychain</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>ProjectKeychain.keychain</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_keychain'>keychain</span><span class='op'>|</span>
+<pre class="code ruby"><code><span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_temp'>temp</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_keychain'>keychain</span><span class='op'>|</span>
     <span class='comment'># import certs into the keychain
 </span>    <span class='comment'># perform builds within this keychain's context
 </span><span class='kw'>end</span> <span class='comment'># Keychain is deleted
 </span></code></pre>
+
+<p>Or, you can create a temporary keychain that will be deleted when the process exits:</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_keychain'>keychain</span> <span class='op'>=</span> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>Keychain</span><span class='period'>.</span><span class='id identifier rubyid_temp'>temp</span>
+</code></pre>
 
 <h4>Importing a certificate</h4>
 
@@ -202,11 +211,88 @@
 <p>You can invoke your test target/bundle from the builder</p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_test'>test</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_report'>report</span><span class='op'>|</span>
-    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test-reports</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:junit</span>
-<span class='kw'>end</span>
+    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span> <span class='op'>=</span> <span class='kw'>false</span>    <span class='comment'># default false, set to true to see raw output from xcodebuild
+</span>
+    <span class='comment'># The following is the default setup, you wouldnt normally need to do this unless
+</span>    <span class='comment'># you want to add new formatters
+</span>    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_formatters'>formatters</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_add_formatter'>add_formatter</span> <span class='symbol'>:junit</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>test-reports</span><span class='tstring_end'>'</span></span> <span class='comment'># Output JUnit format results to test-reports/
+</span>    <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_add_formatter'>add_formatter</span> <span class='symbol'>:stdout</span>                <span class='comment'># Output a simplified output to STDOUT
+</span><span class='kw'>end</span>
 </code></pre>
 
-<p>This will invoke the test target, capture the output and write the junit reports to the test-reports directory.  Currently only junit is supported.</p>
+<p>This will invoke the test target, capture the output and write the junit reports to the test-reports directory.  Currently only junit is supported, although you can write your own formatter quite easily (for an example, look at Xcode::Test::Formatters::JunitFormatter).</p>
+
+<h2>Rake Tasks</h2>
+
+<p>Xcoder provides a rake task to assist with make it easier to perform common Xcode project actions from the command-line.</p>
+
+<p>Within your <code>Rakefile</code> add the following:</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>xcoder/rake_task</span><span class='tstring_end'>'</span></span>
+</code></pre>
+
+<p>Then define your Rake Task:</p>
+
+<pre class="code ruby"><code><span class='const'>Xcode</span><span class='op'>::</span><span class='const'>RakeTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+</code></pre>
+
+<p>By default this will generate rake tasks within the &#39;xcode&#39; namespace for
+all the projects (within the current working directory), all their targets, 
+and all their configs. This will also generate tasks for all of a projects
+schemes as well.</p>
+
+<pre class="code ruby"><code>All names from the project, schemes, targets, and configs are remove
+the camel-casing and replacing the cameling with underscores. Spaces
+are replaced with dashes (-)
+</code></pre>
+
+<p>This will generate rake tasks that appear similar to the following:</p>
+
+<pre class="code ruby"><code>  rake xcode:project-name:targetname:debug:build   
+  rake xcode:project-name:targetname:debug:clean         
+  # ...
+</code></pre>
+
+<p>You can specify a parameter to change the root rake namespace:</p>
+
+<pre class="code ruby"><code> <span class='const'>Xcode</span><span class='op'>::</span><span class='const'>RakeTask</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:apple</span>
+
+ <span class='comment'># Resulting Rake Tasks:
+</span> <span class='comment'># rake apple:project-name:targetname:debug:build
+</span> <span class='comment'># rake apple:project-name:targetname:debug:clean
+</span> <span class='comment'># ...
+</span></code></pre>
+
+<p>You can also supply a block to provide additional configuration to specify the folder to search for projects and the projects that should generate tasks for:</p>
+
+<pre class="code ruby"><code> Xcode::RakeTask.new :hudson do |xcoder|
+   xcoder.directory = &quot;projects&quot;
+   xcoder.projects = [ &quot;Project Alpha&quot;, &quot;Project Beta&quot; ]
+ end
+
+ rake hudson:project-alpha:targetname:debug:build
+ # ...
+</code></pre>
+
+<h2><a href="https://github.com/guard/guard">Guard</a></h2>
+
+<p>Guard provides the ability to launch commands when files changed. There is a <a href="https://github.com/burtlo/guard-xcoder">guard-xcoder</a> which allows you easily execute build actions whenever your project file changes.</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_guard'>guard</span>
+<span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_guard'>guard</span><span class='op'>-</span><span class='id identifier rubyid_xcoder'>xcoder</span>
+
+<span class='id identifier rubyid_guard'>guard</span> <span class='id identifier rubyid_init'>init</span>
+<span class='id identifier rubyid_guard'>guard</span> <span class='id identifier rubyid_init'>init</span> <span class='id identifier rubyid_xcoder'>xcoder</span>
+</code></pre>
+
+<p>Afterwards you will need to define the project you want to monitor and the actions that you want to take place when a source files changes within the project file.</p>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_guard'>guard</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>xcoder</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:actions</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span> <span class='symbol'>:clean</span><span class='comma'>,</span> <span class='symbol'>:build</span><span class='comma'>,</span> <span class='symbol'>:test</span> <span class='rbracket'>]</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_watch'>watch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>ProjectName</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_watch'>watch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>ProjectName//TargetName</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
 
 <h2>Manipulating a Project</h2>
 
@@ -279,7 +365,7 @@ source_files = [ { 'name' =&gt; 'Reachability.m', 'path' =&gt; 'Vendor/Reachabil
 </div></div>
     
     <div id="footer">
-  Generated on Mon Feb 20 15:15:34 2012 by 
+  Generated on Sun Mar 25 21:59:41 2012 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.7.5 (ruby-1.9.2).
 </div>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>
-  Module: Xcode::Configuration::ArrayProperty
+  Module: Xcode::Configuration::KeyValueArrayProperty
   
     &mdash; Documentation by YARD 0.7.5
   
@@ -33,10 +33,10 @@
     <div id="header">
       <div id="menu">
   
-    <a href="../../_index.html">Index (A)</a> &raquo; 
+    <a href="../../_index.html">Index (K)</a> &raquo; 
     <span class='title'><span class='object_link'><a href="../../Xcode.html" title="Xcode (module)">Xcode</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../Configuration.html" title="Xcode::Configuration (module)">Configuration</a></span></span>
      &raquo; 
-    <span class="title">ArrayProperty</span>
+    <span class="title">KeyValueArrayProperty</span>
   
   
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -56,7 +56,7 @@
     
     <iframe id="search_frame"></iframe>
     
-    <div id="content"><h1>Module: Xcode::Configuration::ArrayProperty
+    <div id="content"><h1>Module: Xcode::Configuration::KeyValueArrayProperty
   
   
   
@@ -67,7 +67,7 @@
   
     
       <dt class="r1">Extended by:</dt>
-      <dd class="r1"><span class='object_link'><a href="" title="Xcode::Configuration::ArrayProperty (module)">ArrayProperty</a></span></dd>
+      <dd class="r1"><span class='object_link'><a href="" title="Xcode::Configuration::KeyValueArrayProperty (module)">KeyValueArrayProperty</a></span></dd>
       
     
   
@@ -75,12 +75,12 @@
   
   
     <dt class="r2">Included in:</dt>
-    <dd class="r2"><span class='object_link'><a href="" title="Xcode::Configuration::ArrayProperty (module)">ArrayProperty</a></span></dd>
+    <dd class="r2"><span class='object_link'><a href="" title="Xcode::Configuration::KeyValueArrayProperty (module)">KeyValueArrayProperty</a></span></dd>
     
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/xcode/configurations/array_property.rb</dd>
+    <dd class="r1 last">lib/xcode/configurations/key_value_array_property.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -89,8 +89,7 @@
   <div class="discussion">
     <p>
 Within the a build settings for a configuration there are a number of
-settings that are stored as Arrays. This helper module is for the most part
-a pass-through method to provide parity with the other methods.
+settings that are stored as key-value pairs in Arrays.
 </p>
 
 
@@ -130,7 +129,12 @@ a pass-through method to provide parity with the other methods.
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>
+To ensure uniqueness, the original value array is added to the new value
+array and then all the key-values pairs are placed in a Hash then mapped
+back out to a key=value pair array.
+</p>
+</div></span>
   
 </li>
 
@@ -196,21 +200,37 @@ As arrays are stored as arrays this is not particularly different.
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>
+To ensure uniqueness, the original value array is added to the new value
+array and then all the key-values pairs are placed in a Hash then mapped
+back out to a key=value pair array.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-30
-31
-32</pre>
+34
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/array_property.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/key_value_array_property.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_append'>append</span><span class='lparen'>(</span><span class='id identifier rubyid_original'>original</span><span class='comma'>,</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='lparen'>(</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_original'>original</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
+  <span class='id identifier rubyid_all_values'>all_values</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_original'>original</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_key_value'>key_value</span><span class='op'>|</span> <span class='id identifier rubyid_key_value'>key_value</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
+  <span class='const'>Hash</span><span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_all_values'>all_values</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_k'>k</span><span class='rbrace'>}</span><span class='tstring_content'>=</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_v'>v</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -263,12 +283,12 @@ to be parsed into the correct format
       <pre class="lines">
 
 
+17
 18
-19
-20</pre>
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/array_property.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/key_value_array_property.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -322,12 +342,12 @@ it responds_to? #to_a
       <pre class="lines">
 
 
+25
 26
-27
-28</pre>
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/array_property.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/xcode/configurations/key_value_array_property.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
