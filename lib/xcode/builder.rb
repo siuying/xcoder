@@ -39,7 +39,7 @@ module Xcode
     def test(options = {:sdk => 'iphonesimulator'})
       cmd = build_command(options)
       cmd << "TEST_AFTER_BUILD=YES"
-      # cmd << "TEST_HOST=''"
+      cmd << "TEST_HOST=''"
       
       parser = Xcode::Test::OCUnitReportParser.new
       yield(parser) if block_given?
